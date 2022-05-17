@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Courier New", monospace;
+            font-weight: bold;
+            color: #cfe3d7;
+            padding: 20px;
+            background-color: #0a2f18;
+            background-image: url("/static/hexagon.png")
+        }
+
+        p,h1,h2,h3,h4,h5 {
+            font-family: Arial;
+            width: 100%;
+            hyphens: auto;
+            /*word-break: break-all;
+            word-wrap: break-word;*/
+            white-space: normal;
+        }
+
+        .header {
+            padding: 30px;
+            text-align: center;
+            background: #288f4f;
+        }
+
+        .leftcolumn {
+            float: left;
+            width: 33%;
+        }
+
+        .rightcolumn {
+            float: left;
+            width: 33%;
+            padding-left: 20px;
+        }
+
+        .fakeimg {
+            width: 100%;
+            padding: 5px;
+            display: inline;
+        }
+        .avatarimg {
+            display: inline;
+        }
+
+        .imageava{
+            max-width: 100%;
+            height: auto;
+            display: inline;
+        }
+        .imageava_avatar{
+            max-width: 12%;
+            max-height: 55px;
+            height: auto;
+            display: inline;
+        }
+        .imageava_pictures{
+            max-width: 100%;
+            height: auto;
+            display: inline;
+        }
+        .imageava_ads{
+            max-width: 96%;
+            max-height: 255px;
+            height: auto;
+            display: inline;
+        }
+
+        .card {
+            background-color: #288f4f;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .footer {
+            padding: 20px;
+            text-align: center;
+            background: #288f4f;
+            margin-top: 20px;
+        }
+
+        .textarea {
+            display: block;
+            font-family: Arial;
+            background: transparent;
+            color:#fff;
+            font-size: 16px;
+            border:2px solid white;
+            width: 80%;
+            resize: vertical;
+            min-height: 80px;
+            line-height: 20px;
+        }
+
+        .textarea2 {
+            display: block;
+            font-family: Arial;
+            background: transparent;
+            color:#fff;
+            font-size: 16px;
+            border:2px solid white;
+            width: 250px;
+            resize: vertical;
+            min-height: 5px;
+            line-height: 20px;
+        }
+
+        .textarea1 {
+            display: block;
+            font-family: Arial;
+            background: transparent;
+            color:#fff;
+            font-size: 16px;
+            border:2px solid white;
+            width: 80%;
+            min-height: 5px;
+            resize: vertical;
+            line-height: 20px;
+        }
+        button, input[type="submit"] {
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
+            background:url(/static/Button_send.png) no-repeat;"
+        }
+        input[type="file"] {
+            display: none;
+        }
+        @media screen and (max-width: 800px) {
+            .leftcolumn, .rightcolumn {
+                width: 100%;
+                padding: 0;
+            }
+        }
+        .square {
+            height: 15px;
+            width: 15px;
+        }
+    </style>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
+<div class="header">
+    <a href="/"><img class="imageava" src="/static/ImagineUnrealText.png"></a>
+</div>
+
+<div class="row">
+    <div class="leftcolumn">
+        <div class="card">
+            <h2>Документация</h2>
+            <a href="doc#tab" style="color: darkred;">
+                <li style="font-family: Arial;">
+                    Действия с мнимыми числами
+                </li>
+            </a>
+            <br/>
+            <a href="doc#1">
+                <li style="font-family: Arial;">
+                    Как работает программа
+                </li>
+            </a>
+            <br/>
+            <a href="doc#2">
+                <li style="font-family: Arial;">
+                    Общее понятие о мнимых числах
+                </li>
+            </a>
+            <br/>
+            <a href="doc#3">
+                <li style="font-family: Arial;">
+                    Построение координатной плоскоcти с мнимыми числами
+                </li>
+            </a>
+            <br/>
+            <a href="doc#4">
+                <li style="font-family: Arial;">
+                    Суммирование и вычитание мнимых чисел
+                </li>
+            </a>
+            <br/>
+            <a href="doc#5">
+                <li style="font-family: Arial;">
+                    Полярная форма мнимого числа/выражения
+                </li>
+            </a>
+            <br/>
+            <a href="doc#6">
+                <li style="font-family: Arial;">
+                    Перевод полярной формы в арифметическую
+                </li>
+            </a>
+        </div>
+    </div>
+    <div class="rightcolumn">
+        <div class="card">
+            <h2>Полярный калькулятор мнимых чисел</h2>
+            <form enctype="multipart/form-data" id="calc" method="POST">
+                a = <input style="display: inline;" class="textarea2" id="a" name="1"><br/>
+                b = <input style="display: inline;" class="textarea2" id="b" name="2"><br/>
+                c = <input style="display: inline;" class="textarea2" id="c" name="3"><br/>
+                d = <input style="display: inline;" class="textarea2" id="d" name="4"><br/>
+                e = <input style="display: inline;" class="textarea2" id="e" name="5"><br/>
+                f = <input style="display: inline;" class="textarea2" id="f" name="6"><br/>
+                g = <input style="display: inline;" class="textarea2" id="g" name="7"><br/>
+                h = <input style="display: inline;" class="textarea2" id="h" name="8"><br/>
+                k = <input style="display: inline;" class="textarea2" id="k" name="9"><br/>
+                l = <input style="display: inline;" class="textarea2" id="l" name="10"><br/>
+                m = <input style="display: inline;" class="textarea2" id="m" name="11"><br/>
+                n = <input style="display: inline;" class="textarea2" id="n" name="12"><br/>
+                <br/>
+                <h4>Вычисление</h4>
+                <input class="textarea2" id="sum" name="13"><br/>
+                THISISASPLIT
+                <input style="margin: 0 auto; width: 107px; height: 55px; border:2px solid white; color: white; font-family: Arial" type="submit" id="calc1" value="Посчитать" name="action2">
+            </form>
+        </div>
+    </div>
+    <div class="rightcolumn">
+        <div class="card">
+            <p style="font-style: italic;">Если разница в числах слишком большая то могут быть не точности</p>
+            <div class="fakeimg"><a href="whatw" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="HAHAHHAHAHAHHA"></a></div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <h4>Выполнил ученик 10 класса "А" школы КРСШЛ №54<br/>Дмитрий Андреевич Бояркин</h4>
+</div>
+</body>
+</html>

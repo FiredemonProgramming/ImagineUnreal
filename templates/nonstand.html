@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Arial";
+            font-weight: bold;
+            color: #cfe3d7;
+            padding: 20px;
+            background-color: #0a2f18;
+            background-image: url("/static/hexagon.png")
+        }
+
+        p,h1,h2,h3,h4,h5 {
+            font-family: Arial;
+            font-size: 20px;
+            width: 100%;
+            hyphens: auto;
+            /*word-break: break-all;
+            word-wrap: break-word;*/
+            white-space: normal;
+        }
+
+        .header {
+            padding: 30px;
+            text-align: center;
+            background: #288f4f;
+        }
+
+        .leftcolumn {
+            float: left;
+            width: 100%;
+        }
+
+        .rightcolumn {
+            float: left;
+            width: 33%;
+            padding-left: 20px;
+        }
+
+        .fakeimg {
+            width: 100%;
+            padding: 5px;
+            display: inline;
+        }
+        .avatarimg {
+            display: inline;
+        }
+
+        .imageava{
+            max-width: 100%;
+            height: auto;
+            display: inline;
+        }
+        .imageava_avatar{
+            max-width: 12%;
+            max-height: 55px;
+            height: auto;
+            display: inline;
+        }
+        .imageava_pictures{
+            image-rendering: crisp-edges;
+            max-width: 100%;
+            max-height: 700px;
+            height: auto;
+            display: inline;
+        }
+        .imageava_ads{
+            max-width: 96%;
+            max-height: 255px;
+            height: auto;
+            display: inline;
+        }
+
+        .card {
+            background-color: #288f4f;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .footer {
+            padding: 20px;
+            text-align: center;
+            background: #288f4f;
+            margin-top: 20px;
+        }
+
+        .textarea {
+            display: block;
+            font-family: Arial;
+            background: transparent;
+            color:#fff;
+            font-size: 16px;
+            border:2px solid white;
+            width: 80%;
+            resize: vertical;
+            min-height: 80px;
+            line-height: 20px;
+        }
+
+        .textarea2 {
+            display: block;
+            font-family: Arial;
+            background: transparent;
+            color:#fff;
+            font-size: 16px;
+            border:2px solid white;
+            width: 250px;
+            resize: vertical;
+            min-height: 5px;
+            line-height: 20px;
+        }
+
+        .textarea1 {
+            display: block;
+            font-family: Arial;
+            background: transparent;
+            color:#fff;
+            font-size: 16px;
+            border:2px solid white;
+            width: 80%;
+            min-height: 5px;
+            resize: vertical;
+            line-height: 20px;
+        }
+        button, input[type="submit"] {
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
+            background:url(/static/Button_send.png) no-repeat;"
+        }
+        input[type="file"] {
+            display: none;
+        }
+        @media screen and (max-width: 800px) {
+            .leftcolumn, .rightcolumn {
+                width: 100%;
+                padding: 0;
+            }
+        }
+        .square {
+            height: 15px;
+            width: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="/"><img class="imageava" src="/static/ImagineUnrealText.png"></a>
+    </div>
+
+    <div class="row">
+        <div class="leftcolumn">
+            <div class="card">
+                <a href="../static/docpictures/hard_a.png" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="/static/docpictures/hard_a.png"></a>
+                <h4 style="font-size: 18px">
+                    Угол φ можно выразить через arc-sin,cos,tg,ctg как показано на рисунке.<br/>
+                    <br/>
+                    Через не стандартное нахождение угла arc-sin,cos,tg,ctg можно найти примерно точный ответ<br/>
+                </h4>
+                <a href="../static/docpictures/hard.jpg" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="/static/docpictures/hard.jpg"></a>
+                <h4 style="font-size: 18px">
+                    Вместо знака бесконечности ставим любое целое число больше 1 (чем выше число тем точнее ответ)<br/>
+                    <br/>После чего получаем ответ в радианах и через перевод радиан в градусы мы можем получить угол
+                </h4>
+                <a href="../static/docpictures/degtorad.png" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="/static/docpictures/degtorad.png"></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <h4 style="font-size: 16px">Выполнил ученик 10 класса "А" школы КРСШЛ №54<br/>Дмитрий Андреевич Бояркин</h4>
+    </div>
+</body>
