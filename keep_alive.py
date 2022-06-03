@@ -10,6 +10,20 @@ except:
     ddddd=sys.executable
     subprocess.check_call([ddddd, "-m", "pip", "install", "sympy"])
     from sympy import*
+try:
+    import matplotlib.pyplot as plt
+except:
+    import sys
+    ddddd=sys.executable
+    subprocess.check_call([ddddd, "-m", "pip", "install", "matplotlib"])
+    import matplotlib.pyplot as plt
+try:
+    import numpy as np
+except:
+    import sys
+    ddddd=sys.executable
+    subprocess.check_call([ddddd, "-m", "pip", "install", "numpy"])
+    import numpy as np
 app = Flask(__name__)
 z=[]
 lcheck=""
@@ -110,21 +124,6 @@ def home():
                 label15=""
                 if "i" in str(lcheck) or "j" in str(lcheck) or "I" in str(lcheck) or "J" in str(lcheck):
                     print(z,hhh3)
-                    import subprocess
-                    try:
-                        import matplotlib.pyplot as plt
-                    except:
-                        import sys
-                        ddddd=sys.executable
-                        subprocess.check_call([ddddd, "-m", "pip", "install", "matplotlib"])
-                        import matplotlib.pyplot as plt
-                    try:
-                        import numpy as np
-                    except:
-                        import sys
-                        ddddd=sys.executable
-                        subprocess.check_call([ddddd, "-m", "pip", "install", "numpy"])
-                        import numpy as np
                     import math
                     import sympy
                     bbb2=""
@@ -185,7 +184,8 @@ def home():
                     label15="Результат<br/>"
                     print(len(bbb2.split('\n')))
                     for i in range(len(bbb2.split('\n'))-1):
-                        label15+='<div style="position: absolute; background-color: '+abb1[hhh3[i]]+'; clear: left;" class="square"></div>'+'<p style="margin-left: 20px; color: #ffffff">'+bbb2.split('\n')[i].replace('<','&lt;').replace('>','&gt;')+"</p>"
+                        #position: absolute;
+                        label15+='<div style="position: absolute; background-color: '+abb1[hhh3[i]]+'; clear: left;" class="square"></div>'+'<p style="margin-left: 20px; color: #f3d01b">'+bbb2.split('\n')[i].replace('<','&lt;').replace('>','&gt;')+"</p>"
                     somethingpicture="/static/graph.png"
                     somethingpicture1="../static/graph.png"
                 else:

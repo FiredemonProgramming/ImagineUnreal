@@ -10,9 +10,10 @@
         body {
             font-family: "Courier New", monospace;
             font-weight: bold;
-            color: #cfe3d7;
+            /*color: #f3d01b;*/
+            color: darkgray;
             padding: 20px;
-            background-color: #0a2f18;
+            background-color:#212121;
             background-image: url("/static/hexagon.png")
         }
 
@@ -29,7 +30,7 @@
         .header {
             padding: 30px;
             text-align: center;
-            background: #288f4f;
+            background: #2e2e2e;
         }
 
         .leftcolumn {
@@ -78,7 +79,7 @@
         }
 
         .card {
-            background-color: #288f4f;
+            background: #2e2e2e;
             padding: 20px;
             margin-top: 20px;
         }
@@ -92,7 +93,7 @@
         .footer {
             padding: 20px;
             text-align: center;
-            background: #288f4f;
+            background: #2e2e2e;
             margin-top: 20px;
         }
 
@@ -100,9 +101,9 @@
             display: block;
             font-family: Arial;
             background: transparent;
-            color:#fff;
+            color: #f3d01b;
             font-size: 16px;
-            border:2px solid white;
+            border: 2px solid #f3d01b;
             width: 80%;
             resize: vertical;
             min-height: 80px;
@@ -113,10 +114,10 @@
             display: block;
             font-family: Arial;
             background: transparent;
-            color:#fff;
+            color: #f3d01b;
             font-size: 16px;
-            border:2px solid white;
-            width: 250px;
+            border: 2px solid #f3d01b;
+            max-width: 100%;
             resize: vertical;
             min-height: 5px;
             line-height: 20px;
@@ -126,9 +127,9 @@
             display: block;
             font-family: Arial;
             background: transparent;
-            color:#fff;
+            color: #f3d01b;
             font-size: 16px;
-            border:2px solid white;
+            border: 2px solid #f3d01b;
             width: 80%;
             min-height: 5px;
             resize: vertical;
@@ -141,7 +142,8 @@
             font: inherit;
             cursor: pointer;
             outline: inherit;
-            background:url(/static/Button_send.png) no-repeat;"
+            background: #212121;
+            /*background:url(/static/Button_send.png) no-repeat;"*/
         }
         input[type="file"] {
             display: none;
@@ -156,37 +158,166 @@
             height: 15px;
             width: 15px;
         }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 140px;
+            background-color: #555;
+            /*color:#fff;*/
+            color: #f3d01b;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 150%;
+            left: 50%;
+            margin-left: -75px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .sidepanel  {
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            height: 100%;
+            top: 0;
+            right: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidepanel a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #f3d01b;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidepanel a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidepanel .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+        }
+        .sidepanel .closebtn1 {
+            position: absolute;
+            top: 0;
+            right: 185px;
+            font-size: 36px;
+        }
+
+        .openbtn {
+            display:block;
+            /*font-size: 20px;*/
+            font-family: Arial;
+            font-size: 100%;
+            background-color: #212121;
+            color: #f3d01b;
+            /*padding: 10px 15px;*/
+            padding: 0.5% 1%;
+            border: none;
+        }
+
+        .openbtn:hover {
+            background-color:#444;
+        }
     </style>
 </head>
 <body>
-<div class="header">
-    <a href="/"><img class="imageava" src="/static/ImagineUnrealText.png"></a>
-</div>
+<script type="text/javascript">
+    function myFunction11() {
+        var tooltip = document.getElementById("myTooltip");
+        var r = document.createRange();
+        r.selectNode(document.getElementById("myTooltip"));
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(r);
+        document.execCommand('copy');
+        window.getSelection().removeAllRanges();
+        tooltip.innerHTML = "Скопировано!";
+        /*document.execCommand("copy",true,+77003390896);*/
+    }
+    function outFunc() {
+        var tooltip = document.getElementById("myTooltip");
+        tooltip.innerHTML = "+77003390896";
+    }
+    function openNav() {
+        document.getElementById("mySidepanel").style.width = "250px";
+    }
 
+    function closeNav() {
+        document.getElementById("mySidepanel").style.width = "0";
+    }
+</script>
+<div id="mySidepanel" class="sidepanel">
+    <a href="/" class="closebtn1">⌂</a>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <!--<a href="doc#tab">• Действия с мнимыми числами</a>-->
+    <a href="doc#1">•Как работает программа</a>
+    <a href="doc#2">•Общее понятие о мнимых числах</a>
+    <a href="doc#3">•Построение координатной плоскоcти с мнимыми числами</a>
+    <a href="doc#4">•Суммирование и вычитание мнимых чисел</a>
+    <a href="doc#5">•Полярная форма мнимого числа/выражения</a>
+    <a href="doc#6">•Перевод полярной формы в арифметическую</a>
+    <a href="doc#7">•Wolfram Alpha</a>
+</div>
+<div class="header">
+    <a href="/"><img class="imageava" src="/static/ImagineUnrealText.png"></a><br/>
+    <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+    <button class="openbtn" onclick="openNav()">☰ Документация</button>
+    </div>
+</div>
 <div class="row">
     <div class="leftcolumn">
         <div class="card">
             <h2>Документация</h2>
-            <a name="tab">
+            <!--<a name="tab">
                 <li style="font-family: Arial;font-style: oblique;font-family: 'Times New Roman';font-size: 20px">
-                    <mark style="background-color: #1fb758; color:#cfe3d7;">Действия с мнимыми числами</mark>
+                    <mark style="background-color: #212121; color:darkgray;">Действия с мнимыми числами</mark>
                 </li>
             </a>
             <h4 style="font-size: 18px">
                 Арифметическая форма / Полярная форма
             </h4>
-            <a href="../static/docpictures/arith.png" target="_blank" rel="noopener noreferrer"><img style="border: 3px white solid" class="imageava_pictures" src="/static/docpictures/arith.png"></a> <a style="display: inline" href="../static/docpictures/polar.png" target="_blank" rel="noopener noreferrer"><img style="border: 3px white solid" class="imageava_pictures" src="/static/docpictures/polar.png"></a>
+            <a href="../static/docpictures/arith.png" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="/static/docpictures/arith.png"></a> <a style="display: inline" href="../static/docpictures/polar.png" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="/static/docpictures/polar.png"></a>
 
             <br/>
             <br/>
-            <br/>
+            <br/>-->
             <a name="1">
             <li style="font-family: Arial;font-style: oblique;font-family: 'Times New Roman';font-size: 20px">
-                <mark style="background-color: #1fb758; color:#cfe3d7;">Как работает программа</mark>
+                <mark style="background-color: #212121; color:darkgray;">Как работает программа</mark>
             </li>
             </a>
             <br/>
-            <a href="../static/docpictures/1.png" target="_blank" rel="noopener noreferrer"><img style="border: 3px white solid" class="imageava_pictures" src="/static/docpictures/1.png"></a> <a style="display: inline" href="../static/docpictures/1(1).png" target="_blank" rel="noopener noreferrer"><img style="border: 3px white solid" class="imageava_pictures" src="/static/docpictures/1(1).png"></a>
+            <a href="../static/docpictures/1.png" target="_blank" rel="noopener noreferrer"><img style="border: 3px darkgray solid" class="imageava_pictures" src="/static/docpictures/1.png"></a> <a style="display: inline" href="../static/docpictures/1(1).png" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="/static/docpictures/1(1).png"></a>
             <h4 style="font-size: 18px">
                 В поля a,b...n вводятся мнимые числа на подобии 2+3i.<br/>
                 После чего в поле "Вычисление" вписываются действия с этими мнимыми числами обозначая их буквами в зависимости в каких полях они находятся.<br/>
@@ -196,7 +327,7 @@
 
             <a name="2">
                 <li style="font-family: Arial;font-style: oblique;font-family: 'Times New Roman';font-size: 20px">
-                    <mark style="background-color: #1fb758; color:#cfe3d7;">Общее понятие о мнимых числах</mark>
+                    <mark style="background-color: #212121; color:darkgray;">Общее понятие о мнимых числах</mark>
                 </li>
             </a>
             <br/>
@@ -220,7 +351,7 @@
 
             <a name="3">
                 <li style="font-family: Arial;font-style: oblique;font-family: 'Times New Roman';font-size: 20px">
-                    <mark style="background-color: #1fb758; color:#cfe3d7;">Построение координатной плоскости с мнимыми числами</mark>
+                    <mark style="background-color: #212121; color: darkgray;">Построение координатной плоскости с мнимыми числами</mark>
                 </li>
             </a>
             <br/>
@@ -239,7 +370,7 @@
 
             <a name="4">
                 <li style="font-family: Arial;font-style: oblique;font-family: 'Times New Roman';font-size: 20px">
-                    <mark style="background-color: #1fb758; color:#cfe3d7;">Суммирование и вычитание мнимых чисел</mark>
+                    <mark style="background-color: #212121; color:darkgray;">Суммирование и вычитание мнимых чисел</mark>
                 </li>
             </a>
             <br/>
@@ -253,7 +384,7 @@
 
             <a name="5">
                 <li style="font-family: Arial;font-style: oblique;font-family: 'Times New Roman';font-size: 20px">
-                    <mark style="background-color: #1fb758; color:#cfe3d7;">Полярная форма мнимого числа/выражения</mark>
+                    <mark style="background-color: #212121; color:darkgray;">Полярная форма мнимого числа/выражения</mark>
                 </li>
             </a>
             <br/>
@@ -271,7 +402,7 @@
 
             <a name="6">
                 <li style="font-family: Arial;font-style: oblique;font-family: 'Times New Roman';font-size: 20px">
-                    <mark style="background-color: #1fb758; color:#cfe3d7;">Перевод полярной формы в арифметическую</mark>
+                    <mark style="background-color: #212121; color:darkgray;">Перевод полярной формы в арифметическую</mark>
                 </li>
             </a>
             <br/>
@@ -282,12 +413,29 @@
                 <br/>a = r*(cos∠φ)<br/>
                 b = r*(sin∠φ)<br/>
             </h4>
-
+            <a name="7">
+                <li style="font-family: Arial;font-style: oblique;font-family: 'Times New Roman';font-size: 20px">
+                    <mark style="background-color: #212121; color:darkgray;">Wolfram Alpha</mark>
+                </li>
+            </a>
+            <h4 style="font-size: 18px">
+                Снизу представлен калькулятор который решает мнимые выражения арифмитическим способом<br/>
+            </h4>
+            <div style="width: 0"><script type="text/javascript" id="WolframAlphaScriptf62dd0a9097998e940a2230408d86611" src="//www.wolframalpha.com/widget/widget.jsp?id=f62dd0a9097998e940a2230408d86611"></script></div>
         </div>
     </div>
 </div>
 <div class="footer">
-    <h4 style="font-size: 16px">Выполнил ученик 10 класса "А" школы КРСШЛ №54<br/>Дмитрий Андреевич Бояркин</h4>
+    <!--<h4 style="font-size: 16px">Выполнил ученик 10 класса "А" школы КРСШЛ №54<br/>Дмитрий Андреевич Бояркин</h4>-->
+    <h4 style="font-size: 16px">Выполнил ученик 10 класса "А" КРСШЛ №54 им. И. В. Панфилова<br/>Дмитрий Андреевич Бояркин</h4>
+    <a href="https://github.com/FiredemonProgramming" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" style="min-width: 1%; max-width:40px; align:center;" src="/static/docpictures/github.png"></a>
+    <a href="http://54.alschool.kz/" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" style="min-width: 1%; max-width:40px; align:center;" src="/static/docpictures/itschool.png"></a>
+    <a href="mailto:dmitriyboyarkin@yandex.kz" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" style="min-width: 1%; max-width:40px; align:center;" src="/static/docpictures/mail.png"></a>
+    <!-- <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" style="min-width: 1%; max-width:40px; align:center;" src="/static/docpictures/Bitcoin-Logo1.png"></a> -->
+    <a class="tooltip"><img class="imageava_pictures" style="min-width: 1%; max-width:40px; align:center;" src="/static/docpictures/phone.png" onclick="myFunction11()" onmouseout="outFunc()"><span class="tooltiptext" id="myTooltip">+77003390896</span></a>
+    <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+        <button class="openbtn" onclick="openNav()">☰ Документация</button>
+    </div>
 </div>
 </body>
 </html>
