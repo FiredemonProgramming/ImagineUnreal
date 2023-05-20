@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Courier New", monospace;
+            font-weight: bold;
+            /*color: #f3d01b;*/
+            color: darkgray;
+            padding: 20px;
+            background-color:#212121;
+            background-image: url("/static/hexagon.png")
+        }
+
+        p,h1,h2,h3,h4,h5 {
+            font-family: Arial;
+            font-size: 20px;
+            width: 100%;
+            hyphens: auto;
+            /*word-break: break-all;
+            word-wrap: break-word;*/
+            white-space: normal;
+        }
+
+        .header {
+            padding: 30px;
+            text-align: center;
+            background: #2e2e2e;
+        }
+
+        .leftcolumn {
+            float: left;
+            width: 100%;
+        }
+
+        .rightcolumn {
+            float: left;
+            width: 33%;
+            padding-left: 20px;
+        }
+
+        .fakeimg {
+            width: 100%;
+            padding: 5px;
+            display: inline;
+        }
+        .avatarimg {
+            display: inline;
+        }
+
+        .imageava{
+            max-width: 100%;
+            height: auto;
+            display: inline;
+        }
+        .imageava_avatar{
+            max-width: 12%;
+            max-height: 55px;
+            height: auto;
+            display: inline;
+        }
+        .imageava_pictures{
+            image-rendering: crisp-edges;
+            max-width: 100%;
+            max-height: 700px;
+            height: auto;
+            display: inline;
+        }
+        .imageava_ads{
+            max-width: 96%;
+            max-height: 255px;
+            height: auto;
+            display: inline;
+        }
+
+        .card {
+            background: #2e2e2e;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .footer {
+            padding: 20px;
+            text-align: center;
+            background: #2e2e2e;
+            margin-top: 20px;
+        }
+
+        .textarea {
+            display: block;
+            font-family: Arial;
+            background: transparent;
+            color: #f3d01b;
+            font-size: 16px;
+            border: 2px solid #f3d01b;
+            width: 80%;
+            resize: vertical;
+            min-height: 80px;
+            line-height: 20px;
+        }
+
+        .textarea2 {
+            display: block;
+            font-family: Arial;
+            background: transparent;
+            color: #f3d01b;
+            font-size: 16px;
+            border: 2px solid #f3d01b;
+            max-width: 100%;
+            resize: vertical;
+            min-height: 5px;
+            line-height: 20px;
+        }
+
+        .textarea1 {
+            display: block;
+            font-family: Arial;
+            background: transparent;
+            color: #f3d01b;
+            font-size: 16px;
+            border: 2px solid #f3d01b;
+            width: 80%;
+            min-height: 5px;
+            resize: vertical;
+            line-height: 20px;
+        }
+        button, input[type="submit"] {
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
+            background: #212121;
+            /*background:url(/static/Button_send.png) no-repeat;"*/
+        }
+        input[type="file"] {
+            display: none;
+        }
+        @media screen and (max-width: 800px) {
+            .leftcolumn, .rightcolumn {
+                width: 100%;
+                padding: 0;
+            }
+        }
+        .square {
+            height: 15px;
+            width: 15px;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 140px;
+            background-color: #555;
+            /*color:#fff;*/
+            color: #f3d01b;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 150%;
+            left: 50%;
+            margin-left: -75px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .sidepanel  {
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            height: 100%;
+            top: 0;
+            right: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidepanel a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #f3d01b;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidepanel a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidepanel .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+        }
+        .sidepanel .closebtn1 {
+            position: absolute;
+            top: 0;
+            right: 185px;
+            font-size: 36px;
+        }
+
+        .openbtn {
+            display:block;
+            /*font-size: 20px;*/
+            font-family: Arial;
+            font-size: 100%;
+            background-color: #212121;
+            color: #f3d01b;
+            /*padding: 10px 15px;*/
+            padding: 0.5% 1%;
+            border: none;
+        }
+
+        .openbtn:hover {
+            background-color:#444;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    function myFunction11() {
+        var tooltip = document.getElementById("myTooltip");
+        var r = document.createRange();
+        r.selectNode(document.getElementById("myTooltip"));
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(r);
+        document.execCommand('copy');
+        window.getSelection().removeAllRanges();
+        tooltip.innerHTML = "Скопировано!";
+    }
+    function outFunc() {
+        var tooltip = document.getElementById("myTooltip");
+        tooltip.innerHTML = "???";
+    }
+    function openNav() {
+        document.getElementById("mySidepanel").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidepanel").style.width = "0";
+    }
+</script>
+<div id="mySidepanel" class="sidepanel">
+    <a href="/" class="closebtn1">⌂</a>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <!--<a href="doc#tab">• Действия с мнимыми числами</a>-->
+    <a href="doc#1">•Как работает программа</a>
+    <a href="doc#2">•Общее понятие о мнимых числах</a>
+    <a href="doc#3">•Построение координатной плоскоcти с мнимыми числами</a>
+    <a href="doc#4">•Суммирование и вычитание мнимых чисел</a>
+    <a href="doc#5">•Полярная форма мнимого числа/выражения</a>
+    <a href="doc#6">•Перевод полярной формы в арифметическую</a>
+    <a href="doc#7">•Смысл полярной формы</a>
+    <a href="doc#8">•Wolfram Alpha</a>
+</div>
+<div class="header">
+    <a href="/"><img class="imageava" src="/static/ImagineUnrealText.png"></a><br/>
+    <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+    <button class="openbtn" onclick="openNav()">☰ Документация</button>
+    </div>
+</div>
+<div class="row">
+    <div class="leftcolumn">
+        <div class="card">
+            <h2>Документация</h2>
+            <!--<a name="tab">
+                <li style="font-family: Arial;font-style: oblique;font-family: 'Times New Roman';font-size: 20px">
+                    <mark style="background-color: #212121; color:darkgray;">Действия с мнимыми числами</mark>
+                </li>
+            </a>
+            <h4 style="font-size: 18px">
+                Арифметическая форма / Полярная форма
+            </h4>
+            <a href="../static/docpictures/arith.png" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="/static/docpictures/arith.png"></a> <a style="display: inline" href="../static/docpictures/polar.png" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="/static/docpictures/polar.png"></a>
+
+            <br/>
+            <br/>
+            <br/>-->
+            <a name="1">
+            <li style="font-family: Arial;font-style: oblique;font-family: 'Times New Roman';font-size: 20px">
+                <mark style="background-color: #212121; color:darkgray;">Как работает программа</mark>
+            </li>
+            </a>
+            <br/>
+            <a href="../static/docpictures/1.png" target="_blank" rel="noopener noreferrer"><img style="border: 3px darkgray solid" class="imageava_pictures" src="/static/docpictures/1.png"></a> <a style="display: inline" href="../static/docpictures/1(1).png" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="/static/docpictures/1(1).png"></a>
+            <h4 style="font-size: 18px">
+                В поля a,b...n вводятся мнимые числа на подобии 2+3i.<br/>
+                После чего в поле "Вычисление" вписываются действия с этими мнимыми числами обозначая их буквами в зависимости в каких полях они находятся.<br/>
+                <br/>К примеру, a=2+3i; b=4+5i; Вычисление=a+b.<br/>
+                Потом после этого нажимаем на кнопку "Посчитать" и внизу появятся полярные формы этих чисел и также на графике.
+            </h4>
+
+            <a name="2">
+                <li style="font-family: Arial;font-style: oblique;font-family: 'Times New Roman';font-size: 20px">
+                    <mark style="background-color: #212121; color:darkgray;">Общее понятие о мнимых числах</mark>
+                </li>
+            </a>
+            <br/>
+            <a href="../static/docpictures/2.png" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="/static/docpictures/2.png"></a> <a style="display: inline" href="../static/docpictures/2(1).png" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="/static/docpictures/2(1).png"></a>
+            <h4 style="font-size: 18px">
+                Мнимое число - это особое число, которое было придумано ради ответа на множество математических вопросов.<br/>
+                К примеру почему фундаментальная теория или основная теория алгебры о многочленах может быть не верна?<br/>
+                Теорема гласит о том, что количество корней у многочлена должно быть равно с его степенью.<br/>
+                Но зная обычную математику мы всегда встречаем многочлены, в которых ответа нет или просто считаются пустыми множествами.<br/>
+                И здесь мы встречаем мнимое число i<br/>
+                <br/>i = √-1&emsp;i² = -1&emsp;i³ = -i&emsp;i⁴ = 1<br/>
+                <br/>Общим видом мнимого выражения считается a+bi.<br/>
+                где a - это любое не мнимое число<br/>
+                b - это любое не мнимое число, но не 0 (т.к. при 0 выражение не считается мнимым)<br/>
+                В общим виде также есть действительная (a) и мнимая часть (b).<br/>
+                <br/>
+                Мнимые числа используются для решения таких выражений как показано на рисунке 2.<br/>
+                Где считается что ответов нет, но если мы продолжим решать после того как получили отрицательный дискриминант<br/>
+                то получим ответ с мнимым числом и это будет считаться ответом.
+            </h4>
+
+            <a name="3">
+                <li style="font-family: Arial;font-style: oblique;font-family: 'Times New Roman';font-size: 20px">
+                    <mark style="background-color: #212121; color: darkgray;">Построение координатной плоскости с мнимыми числами</mark>
+                </li>
+            </a>
+            <br/>
+            <a href="../static/docpictures/3.png" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="/static/docpictures/3.png"></a>
+            <h4 style="font-size: 18px">
+                Сначала строим одну ось координатной плоскости - ось абсцисс.<br/>
+                Это все числа, которые считаются не мнимыми, а действительными (Real), то есть целые, отрицательные, иррациональные и тд.<br/>
+                после чего через точку 0 проводим ось ординат - это мнимые числа (Imaginary).<br/>
+                <br/>Дальше из выражения мы должны выделить мнимую и действительную часть, например, в 2+3i:<br/>
+                2 - это действительная часть (т.к. отсутствует мнимое число i)<br/>
+                3 - это мнимая часть (т.к. он является коэффициентом числа i)<br/>
+                Эти два числа считаются координатами точки конца этого выражения, где действительная часть это x и мнимая часть это y.<br/>
+                После обозначения этой точки мы проводим прямую от 0 до этой точки<br/>
+                и таким образом мы обозначили наше выражение с мнимым числом на координатной плоскости
+            </h4>
+
+            <a name="4">
+                <li style="font-family: Arial;font-style: oblique;font-family: 'Times New Roman';font-size: 20px">
+                    <mark style="background-color: #212121; color:darkgray;">Суммирование и вычитание мнимых чисел</mark>
+                </li>
+            </a>
+            <br/>
+            <a href="../static/docpictures/4.png" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="/static/docpictures/4.png"></a> <a style="display: inline" href="../static/docpictures/4(1).png" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="/static/docpictures/4(1).png"></a>
+            <h4 style="font-size: 18px">
+                Суммирование или вычитание мнимых выражений очень просто.<br/>
+                В арифметическом виде мы складываем и вычитаем эти выражения как будто у нас вместо i стоит переменная, например, x.<br/>
+                Если использовать координатную плоскость, то мы заметим, что этот вид сложения и вычитания похож с другим объектом геометрии.<br/>
+                И конечно, это вектора. Поэтому формулы для векторов действуют и на мнимые числа.
+            </h4>
+
+            <a name="5">
+                <li style="font-family: Arial;font-style: oblique;font-family: 'Times New Roman';font-size: 20px">
+                    <mark style="background-color: #212121; color:darkgray;">Полярная форма мнимого числа/выражения</mark>
+                </li>
+            </a>
+            <br/>
+            <a href="../static/docpictures/5.png" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="/static/docpictures/5.png"></a>
+            <h4 style="font-size: 18px">
+                Полярная форма - это альтернативная запись мнимого числа, используя координатную плоскость.<br/>
+                Как видно на рисунке она записывается следующим способом:<br/>
+                <br/>
+                a+bi = r∠φ°<br/>
+                где r = √(a² + b²) или просто r = гипотенуза треугольника с вектором a+bi<br/>
+                и ∠φ - это угол от 0 до вектора a+bi<br/>
+                <br/>
+                К сожалению, на уровне школы, угол φ можно найти только с использование транспортира (если не использовать полярный калькулятор)<br/>
+            </h4>
+
+            <a name="6">
+                <li style="font-family: Arial;font-style: oblique;font-family: 'Times New Roman';font-size: 20px">
+                    <mark style="background-color: #212121; color:darkgray;">Перевод полярной формы в арифметическую</mark>
+                </li>
+            </a>
+            <br/>
+            <a href="../static/docpictures/6.png" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="/static/docpictures/6.png"></a>
+            <h4 style="font-size: 18px">
+                Перевод из полярной в арифметическую происходит обратной формулой перевода из арифметическую в полярную<br/>
+                Поэтому, когда у нас дана полярная форма r∠φ° ее можно перевести в a+bi через формулу<br/>
+                <br/>a = r*(cos∠φ)<br/>
+                b = r*(sin∠φ)<br/>
+            </h4>
+
+            <a name="7">
+                <li style="font-family: Arial;font-style: oblique;font-family: 'Times New Roman';font-size: 20px">
+                    <mark style="background-color: #212121; color:darkgray;">Смысл полярной формы</mark>
+                </li>
+            </a>
+            <br/>
+            <a href="../static/docpictures/7.png" target="_blank" rel="noopener noreferrer"><img style="border: 3px darkgray solid" class="imageava_pictures" src="/static/docpictures/7.png"></a> <a style="display: inline" href="../static/docpictures/7(1).png" target="_blank" rel="noopener noreferrer"><img style="border: 3px darkgray solid" class="imageava_pictures" src="/static/docpictures/7(1).png"></a>
+            <h4 style="font-size: 18px">
+                Рассматривая мнимые числа, мы встретили две формы записи - полярный и арифметический.<br/>
+                Мы увидели, как обе формы могут выполнять разные действия с мнимыми выражениями, но с этим рассмотрение появился и вопрос:<br/>
+                В чем смысл полярной формы если арифметический может всё, то же самое решать просто не много по-другому?<br/>
+                <br/>Ответ на данный вопрос достаточно прост - это просто альтернатива.<br/>
+                Если мы выполняем легкие действия как сложение, вычитание, умножение и деление, то полярная форма становится обычной альтернативой<br/>
+                Но существуют разные действия с мнимыми выражениями, которые очень сложные или даже невозможны с использование арифметической формы<br/>
+                Примером главным считается корень и степень.<br/>
+                <br/>
+                Если возводить мнимые выражения в корень или степень, то какие-то простые примеры арифметическая форма может решить<br/>
+                Например: (a+bi)^2; (a+bi)^3; (a+bi)^4; √(a+bi)<br/>
+                Но там, где степень очень большая или очень маленькая, арифметика начинает затрудняться<br/>
+                И здесь уже на помощь приходит полярный способ записи<br/>
+                На рисунке представлены формулы и примеры того как полярная форма может решать сложные выражения<br/>
+            </h4>
+
+            <a name="8">
+                <li style="font-family: Arial;font-style: oblique;font-family: 'Times New Roman';font-size: 20px">
+                    <mark style="background-color: #212121; color:darkgray;">Wolfram Alpha</mark>
+                </li>
+            </a>
+            <h4 style="font-size: 18px">
+                Снизу представлен калькулятор который решает мнимые выражения арифмитическим способом<br/>
+            </h4>
+            <div style="width: 0"><script type="text/javascript" id="WolframAlphaScriptf62dd0a9097998e940a2230408d86611" src="//www.wolframalpha.com/widget/widget.jsp?id=f62dd0a9097998e940a2230408d86611"></script></div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <!--<h4 style="font-size: 16px">Выполнил ученик 10 класса "А" школы КРСШЛ №54<br/>Дмитрий Андреевич Бояркин</h4>-->
+    <h4 style="font-size: 16px">Выполнил ученик 10 класса "А" КРСШЛ №54 им. И. В. Панфилова<br/>Дмитрий Андреевич Бояркин</h4>
+    <a href="https://github.com/FiredemonProgramming" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" style="min-width: 1%; max-width:40px; align:center;" src="/static/docpictures/github.png"></a>
+    <a href="http://54.alschool.kz/" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" style="min-width: 1%; max-width:40px; align:center;" src="/static/docpictures/itschool.png"></a>
+    <a href="mailto:???@yandex.kz" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" style="min-width: 1%; max-width:40px; align:center;" src="/static/docpictures/mail.png"></a>
+    <!-- <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" style="min-width: 1%; max-width:40px; align:center;" src="/static/docpictures/Bitcoin-Logo1.png"></a> -->
+    <a class="tooltip"><img class="imageava_pictures" style="min-width: 1%; max-width:40px; align:center;" src="/static/docpictures/phone.png" onclick="myFunction11()" onmouseout="outFunc()"><span class="tooltiptext" id="myTooltip">???</span></a>
+    <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+        <button class="openbtn" onclick="openNav()">☰ Документация</button>
+    </div>
+</div>
+</body>
+</html>

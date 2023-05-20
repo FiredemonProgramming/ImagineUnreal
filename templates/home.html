@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Courier New", monospace;
+            font-weight: bold;
+            /*color: #cfe3d7;*/
+            color: #f3d01b;
+            padding: 20px;
+            /*background-color: #0a2f18;*/
+            background-color:#212121;
+            background-image: url("/static/hexagon.png")
+        }
+
+        p,h1,h2,h3,h4,h5 {
+            font-family: Arial;
+            width: 100%;
+            hyphens: auto;
+            /*word-break: break-all;
+            word-wrap: break-word;*/
+            white-space: normal;
+        }
+
+        .header {
+            padding: 30px;
+            text-align: center;
+            /*background: #288f4f;*/
+            background: #2e2e2e;
+        }
+
+        .leftcolumn {
+            float: left;
+            width: 33%;
+        }
+
+        .rightcolumn {
+             float: left;
+             width: 33.5%;
+             padding-left: 20px;
+         }
+
+        .fakeimg {
+            width: 100%;
+            padding: 5px;
+            display: inline;
+        }
+        .avatarimg {
+            display: inline;
+        }
+
+        .imageava{
+            max-width: 100%;
+            height: auto;
+            display: inline;
+        }
+        .imageava_avatar{
+            max-width: 12%;
+            max-height: 55px;
+            height: auto;
+            display: inline;
+        }
+        .imageava_pictures{
+            max-width: 100%;
+            height: auto;
+            display: inline;
+        }
+        .imageava_ads{
+            max-width: 96%;
+            max-height: 255px;
+            height: auto;
+            display: inline;
+        }
+
+        .card {
+            /*background-color: #288f4f;*/
+            background: #2e2e2e;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .footer {
+            padding: 20px;
+            text-align: center;
+            /*background: #288f4f;*/
+            background: #2e2e2e;
+            margin-top: 20px;
+        }
+
+        .textarea {
+            display: block;
+            font-family: Arial;
+            background: transparent;
+            /*color:#fff;*/
+            color: #f3d01b;
+            font-size: 16px;
+            /*border:2px solid white;*/
+            border: 2px solid #f3d01b;
+            width: 80%;
+            resize: vertical;
+            min-height: 80px;
+            line-height: 20px;
+        }
+
+        .textarea2 {
+            display: block;
+            font-family: Arial;
+            background: transparent;
+            /*color:#fff;*/
+            color: #f3d01b;
+            font-size: 16px;
+            /*border:2px solid white;*/
+            border: 2px solid #f3d01b;
+            max-width: 80%;
+            resize: vertical;
+            min-height: 5px;
+            line-height: 20px;
+        }
+
+        .textarea1 {
+            display: block;
+            font-family: Arial;
+            background: transparent;
+            /*color:#fff;*/
+            color: #f3d01b;
+            font-size: 16px;
+            /*border:2px solid white;*/
+            border: 2px solid #f3d01b;
+            width: 80%;
+            min-height: 5px;
+            resize: vertical;
+            line-height: 20px;
+        }
+        button, input[type="submit"] {
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
+            background: #212121;
+            /*background:url(/static/Button_send.png) no-repeat;"*/
+        }
+        input[type="file"] {
+            display: none;
+        }
+        @media screen and (max-width: 800px) {
+            .leftcolumn, .rightcolumn {
+                width: 100%;
+                padding: 0;
+            }
+        }
+        .square {
+            height: 15px;
+            width: 15px;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 140px;
+            background-color: #555;
+            /*color:#fff;*/
+            color: #f3d01b;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 150%;
+            left: 50%;
+            margin-left: -75px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .sidepanel  {
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            height: 100%;
+            top: 0;
+            right: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidepanel a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #f3d01b;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidepanel a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidepanel .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+        }
+        .sidepanel .closebtn1 {
+             position: absolute;
+             top: 0px;
+             right: 185px;
+             font-size: 36px;
+         }
+
+        .openbtn {
+            display:block;
+            /*font-size: 20px;*/
+            font-family: Arial;
+            font-size: 100%;
+            background-color: #212121;
+            color: #f3d01b;
+            /*padding: 10px 15px;*/
+            padding: 0.5% 1%;
+            border: none;
+        }
+
+        .openbtn:hover {
+            background-color:#444;
+        }
+    </style>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+    function myFunction11() {
+        var tooltip = document.getElementById("myTooltip");
+        var r = document.createRange();
+        r.selectNode(document.getElementById("myTooltip"));
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(r);
+        document.execCommand('copy');
+        window.getSelection().removeAllRanges();
+        tooltip.innerHTML = "Скопировано!";
+    }
+    function outFunc() {
+        var tooltip = document.getElementById("myTooltip");
+        tooltip.innerHTML = "???";
+    }
+    function openNav() {
+        document.getElementById("mySidepanel").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidepanel").style.width = "0";
+    }
+</script>
+<div id="mySidepanel" class="sidepanel">
+    <a href="/" class="closebtn1">⌂</a>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <!--<a href="doc#tab">•Действия с мнимыми числами</a>-->
+    <a href="doc#1">•Как работает программа</a>
+    <a href="doc#2">•Общее понятие о мнимых числах</a>
+    <a href="doc#3">•Построение координатной плоскоcти с мнимыми числами</a>
+    <a href="doc#4">•Суммирование и вычитание мнимых чисел</a>
+    <a href="doc#5">•Полярная форма мнимого числа/выражения</a>
+    <a href="doc#6">•Перевод полярной формы в арифметическую</a>
+    <a href="doc#7">•Смысл полярной формы</a>
+    <a href="doc#8">•Wolfram Alpha</a>
+</div>
+<div class="header">
+    <a href="/"><img class="imageava" src="/static/ImagineUnrealText.png"></a><br/>
+    <div style="display:flex; justify-content:flex-end; width:100%; padding:0;">
+    <button class="openbtn" onclick="openNav()">☰ Документация</button>
+    </div>
+</div>
+
+<div class="row">
+    <!--
+    <div class="leftcolumn">
+        <div class="card">
+            <h2>Документация</h2>
+            <a href="doc#tab" style="color: #e9f2fa;">
+                <li style="font-family: Arial;">
+                    Действия с мнимыми числами
+                </li>
+            </a>
+            <br/>
+            <a href="doc#1" style="color: #f3d01b;">
+                <li style="font-family: Arial;">
+                    Как работает программа
+                </li>
+            </a>
+            <br/>
+            <a href="doc#2" style="color: #f3d01b;">
+                <li style="font-family: Arial;">
+                    Общее понятие о мнимых числах
+                </li>
+            </a>
+            <br/>
+            <a href="doc#3" style="color: #f3d01b;">
+                <li style="font-family: Arial;">
+                    Построение координатной плоскоcти с мнимыми числами
+                </li>
+            </a>
+            <br/>
+            <a href="doc#4" style="color: #f3d01b;">
+                <li style="font-family: Arial;">
+                    Суммирование и вычитание мнимых чисел
+                </li>
+            </a>
+            <br/>
+            <a href="doc#5" style="color: #f3d01b;">
+                <li style="font-family: Arial;">
+                    Полярная форма мнимого числа/выражения
+                </li>
+            </a>
+            <br/>
+            <a href="doc#6" style="color: #f3d01b;">
+                <li style="font-family: Arial;">
+                    Перевод полярной формы в арифметическую
+                </li>
+            </a>
+            <br/>
+            <a href="doc#7" style="color: #f3d01b;">
+                <li style="font-family: Arial;">
+                    Wolfram Alpha
+                </li>
+            </a>
+        </div>
+    </div> -->
+
+    <div class="leftcolumn">
+        <div class="card">
+            <h2>Полярный калькулятор мнимых чисел</h2>
+            <form enctype="multipart/form-data" id="calc" method="POST">
+                <a>a </a><input class="textarea2" style="display: inline;" id="a" name="1"><br/><br/>
+                <a>b </a><input class="textarea2" style="display: inline;" id="b" name="2"><br/><br/>
+                <a>c </a><input class="textarea2" style="display: inline;" id="c" name="3"><br/><br/>
+                <a>d </a><input class="textarea2" style="display: inline;" id="d" name="4"><br/><br/>
+                <a>e </a><input class="textarea2" style="display: inline;" id="e" name="5"><br/><br/>
+                <a>f </a><input class="textarea2" style="display: inline;" id="f" name="6"><br/><br/>
+                <a>g </a><input class="textarea2" style="display: inline;" id="g" name="7"><br/><br/>
+                <a>h </a><input class="textarea2" style="display: inline;" id="h" name="8"><br/><br/>
+                <a>k </a><input class="textarea2" style="display: inline;" id="k" name="9"><br/><br/>
+                <a>l </a><input class="textarea2" style="display: inline;" id="l" name="10"><br/><br/>
+                <a>m </a><input class="textarea2" style="display: inline;" id="m" name="11"><br/><br/>
+                <a>n </a><input class="textarea2" style="display: inline;" id="n" name="12"><br/><br/>
+                <br/>
+                <h4>Вычисление</h4>
+                <input class="textarea2" id="sum" name="13"><br/>
+                THISISASPLIT
+                <input style="margin: 0 auto; width: 107px; height: 55px; /*border:2px solid white;*/ border:2px solid #f3d01b; /*color: white;*/ color: #f3d01b; font-family: Arial" type="submit" id="calc1" value="Посчитать" name="action2">
+            </form>
+        </div>
+    </div>
+    <div class="rightcolumn">
+        <div class="card">
+            <p style="font-style: italic;">Если разница в числах слишком большая, то могут быть неточности</p>
+            <div class="fakeimg"><a href="whatw" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="HAHAHHAHAHAHHA"></a></div>
+        </div>
+        <div class="card">
+            <h4>Выполнил ученик 11 класса "А" КРСШЛ №54 им. И. В. Панфилова<br/>Дмитрий Андреевич Бояркин</h4>
+            <a href="https://github.com/FiredemonProgramming" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" style="min-width: 1%; max-width:40px; align:center;" src="/static/docpictures/github.png"></a>
+            <a href="http://54.alschool.kz/" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" style="min-width: 1%; max-width:40px; align:center;" src="/static/docpictures/itschool.png"></a>
+            <a href="mailto:???@yandex.kz" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" style="min-width: 1%; max-width:40px; align:center;" src="/static/docpictures/mail.png"></a>
+            <!-- <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" style="min-width: 1%; max-width:40px; align:center;" src="/static/docpictures/Bitcoin-Logo1.png"></a> -->
+            <a class="tooltip"><img class="imageava_pictures" style="min-width: 1%; max-width:40px; align:center;" src="/static/docpictures/phone.png" onclick="myFunction11()" onmouseout="outFunc()"><span class="tooltiptext" id="myTooltip">???</span></a>
+        </div>
+    </div>
+    <div class="rightcolumn">
+        <div class="card">
+            <h4 style="font-size: 18px">
+                Арифметическая форма / Полярная форма
+            </h4>
+            <a href="../static/docpictures/arith.png" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="/static/docpictures/arith.png"></a> <a style="display: inline" href="../static/docpictures/polar.png" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" src="/static/docpictures/polar.png"></a>
+        </div>
+    </div>
+</div>
+
+
+<!--<div class="footer">
+    <h4>Выполнил ученик 10 класса "А" школы КРСШЛ №54<br/>Дмитрий Андреевич Бояркин</h4>
+    <a href="https://github.com/FiredemonProgramming" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" style="min-width: 1%; max-width:40px; align:center;" src="/static/docpictures/github.png"></a>
+    <a href="http://54.alschool.kz/" target="_blank" rel="noopener noreferrer"><img class="imageava_pictures" style="min-width: 1%; max-width:40px; align:center;" src="/static/docpictures/itschool.png"></a>
+</div>-->
+</body>
+</html>
